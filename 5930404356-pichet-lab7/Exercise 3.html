@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    </head>
+<body>
+    <section></section>
+ 
+    <script>
+    var section = document.querySelector('section');
+    var requestURL = 'https://bitbucket.org/blackerhot/5930404356-pichet/raw/f0fb2a0205cb42e59f24bcdb6d544fc3bad05dc7/5930404356-pichet-lab7/activities.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+
+
+    request.onload = function() {
+        var superHeroes = request.response;
+        showWeb(superHeroes);
+    }
+
+ function showWeb(jsonObj){
+            var h1 = document.createElement('h1');
+            var ol = document.createElement('ol');
+            h1.innerHTML="Cuurent KKU Activites"
+            section.appendChild(h1);
+     
+            var ttr = jsonObj['activities'];
+     
+            for(var i=0;i<ttr.length;i++){
+                
+            var li = document.createElement('li');
+            var a=document.createElement('a');
+            var group=document.createElement('group');
+            var img=document.createElement('img');
+            var ttrContact = ttr[i]['contact'];
+                
+           
+             group.innerHTML= "Date:" +ttr[i].dateSt + " time:" + ttr[i].timeSt + " if interested, call " + ttrContact.phone +"<br>";
+            img.setAttribute('src',ttr[i].image);
+            img.style.width="50%";
+            img.style.height="auto";
+            a.text=ttr[i].title;
+            a.setAttribute('href',ttr[i].url); 
+            group.appendChild(a);
+            group.innerHTML +="<br>";
+            group.appendChild(img);
+                
+            li.appendChild(group); 
+            ol.appendChild(li);
+            section.appendChild(ol);
+            
+        }
+    }
+ 
+    </script>
+    </body>
+</html>

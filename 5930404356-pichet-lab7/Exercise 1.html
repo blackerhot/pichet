@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    
+    
+    </head>
+<body>
+    <section></section>
+ 
+    <script>
+    var section = document.querySelector('section');
+    var requestURL = 'https://bitbucket.org/blackerhot/5930404356-pichet/raw/f9ff56c7acb078f07a0e2a5374e49bd6b03f0977/5930404356-pichet-lab7/tutorials.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+
+
+    request.onload = function() {
+        var superHeroes = request.response;
+        showWeb(superHeroes);
+    }
+
+ function showWeb(jsonObj){
+     
+            var ttr = jsonObj['tutorials'];
+            for(var i=0;i<ttr.length;i++){
+            var myArti = document.createElement('div');
+            var a=document.createElement('a');
+            var br=document.createElement('br');
+            a.setAttribute('href',ttr[i].url);
+            a.text=ttr[i].display;
+            myArti.appendChild(a);
+            section.appendChild(myArti);
+            section.appendChild(br);
+            
+        }
+    }
+ 
+    </script>
+    </body>
+</html>

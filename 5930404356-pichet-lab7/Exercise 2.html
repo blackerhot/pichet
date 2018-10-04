@@ -1,0 +1,51 @@
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    </head>
+<body>
+    
+    <section></section>
+ 
+    <script>
+    var section = document.querySelector('section');
+    var requestURL = 'https://api.data.go.th/search_virtuoso/api/dataset/query?dsname=vir_237_1535648421&loadAll=1&type=json&limit=10';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+
+
+    request.onload = function() {
+        var superHeroes = request.response;
+        showWeb(superHeroes);
+        
+    }
+
+ function showWeb(jsonObj){
+           
+            var ttr = jsonObj['data'];
+            var ol = document.createElement('ol');
+            var h1 = document.createElement('h1');
+            h1.innerHTML='Open Data Images'
+            section.appendChild(h1);
+            for(var i=0;i<ttr.length;i++){
+                
+            
+            var img=document.createElement('img');
+            var li=document.createElement('li');
+            img.setAttribute('src',ttr[i].thumb_pic);
+            li.appendChild(img);
+            ol.appendChild(li);   
+            section.appendChild(ol);
+            
+        }
+            
+    }
+        
+ 
+    </script>
+    </body>
+</html>
